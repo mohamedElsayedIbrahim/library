@@ -16,15 +16,15 @@
 
 </div>
 
-<form method="POST" action="{{ route('books.store') }}">
+<form method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data">
 
     @csrf
 
     <label>Book Name</label>
-    <input type="text" name="name">
+    <input type="text" name="name" value="{{old('name')}}">
 <br>
     <label>Book price</label>
-    <input type="number" name="price">
+    <input type="number" name="price" value="{{old('price')}}">
 <div class="my-2">
     <label>Book version</label>
     <select name="version">
@@ -33,11 +33,11 @@
     </select>
 </div>
 
-    {{-- <label>Book image</label>
-    <input type="file" name="image"> --}}
+    <label>Book image</label>
+    <input type="file" name="image" value="{{old('image')}}">
 <br>
     <label>Book description</label>
-    <textarea name="desc"  cols="30" rows="5"></textarea>
+    <textarea name="desc"  cols="30" rows="5">{{old('desc')}}</textarea>
 
     <div>
         <button type="submit" class="btn btn-primary">Save Data</button>

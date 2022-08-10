@@ -16,7 +16,7 @@
 
 </div>
 
-<form method="POST" action="{{ route('books.update',$book->id) }}">
+<form method="POST" action="{{ route('books.update',$book->id) }}" enctype="multipart/form-data">
 
     @csrf
 
@@ -33,8 +33,8 @@
     </select>
 </div>
 
-    {{-- <label>Book image</label>
-    <input type="file" name="image"> --}}
+    <label>Book image</label>
+    <input type="file" name="image">
 <br>
     <label>Book description</label>
     <textarea name="desc"  cols="30" rows="5"> {{old('desc') ?? $book->desc}} </textarea>
