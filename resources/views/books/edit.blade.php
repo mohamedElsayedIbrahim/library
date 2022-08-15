@@ -39,6 +39,17 @@
     <label>Book description</label>
     <textarea name="desc"  cols="30" rows="5"> {{old('desc') ?? $book->desc}} </textarea>
 
+    <div class="my-2">
+        <label>Book Category</label>
+        @foreach ($categories as $item)
+        <input class="form-check-input" name="categories_id[]" type="checkbox" value="{{$item->id}}" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          {{$item->name}}
+        </label>
+        @endforeach
+        
+    </div>
+    
     <div>
         <button type="submit" class="btn btn-primary">Save Data</button>
         <a class="btn btn-secondary" href="{{ route('books.index') }}">back</a>

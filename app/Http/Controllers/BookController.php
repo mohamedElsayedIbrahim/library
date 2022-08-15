@@ -33,29 +33,34 @@ class BookController extends Controller
             'version'=>'nullable',
             'desc'=>'required|string',
             'image'=>'nullable|image|mimes:jpg,jpeg,png',
-            'categroy'=>'nullable|integer'
+            'categories_id'=>'required',
+            'categories_id:*'=>'exists:categories,id'
         ]);
+
+
 
         $image = $request->file('image');
         $extention = $image->getClientOriginalExtension();
         $newImageName = uniqid().'.'.$extention;
         $image->move(public_path('uploads/books'),$newImageName);
 
-        Book::create([
+        $book = Book::create([
             'name'=> $request->name,
             'desc'=> $request->desc,
             'price' => $request->price,
             'version'=>$request->version,
             'image'=>$newImageName,
-            'category_id'=>$request->categroy
         ]);
+
+        $book->categories()->sync($request->categories_id);
 
         return redirect()->route('books.index');
     }
 
     public function edit($id){
         $book = Book::findOrFail($id);
-        return view('books.edit',compact('book'));
+        $categories = Category::all();
+        return view('books.edit',compact('book','categories'));
     }
 
     public function update($id, Request $request){
@@ -64,7 +69,9 @@ class BookController extends Controller
             'price'=>'required|integer|min:10|max:50',
             'version'=>'nullable',
             'desc'=>'required|string',
-            'image'=>'nullable|image|mimes:jpg,jpeg,png'
+            'image'=>'nullable|image|mimes:jpg,jpeg,png',
+            'categories_id'=>'required',
+            'categories_id:*'=>'exists:categories,id'
         ]);
 
         $book = Book::find($id);
@@ -88,7 +95,7 @@ class BookController extends Controller
             'version'=>$request->version,
             'image'=>$imageName,
         ]);
-
+        $book->categories()->sync($request->categories_id);
         return redirect()->route('books.index');
     }
 
