@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -20,7 +21,8 @@ class BookController extends Controller
 
     public function add()
     {
-        return view('books.new');
+        $categories = Category::all();
+        return view('books.new',compact('categories'));
     }
 
     public function store(Request $request)
@@ -30,7 +32,8 @@ class BookController extends Controller
             'price'=>'required|integer|min:10|max:50',
             'version'=>'nullable',
             'desc'=>'required|string',
-            'image'=>'nullable|image|mimes:jpg,jpeg,png'
+            'image'=>'nullable|image|mimes:jpg,jpeg,png',
+            'categroy'=>'nullable|integer'
         ]);
 
         $image = $request->file('image');
@@ -44,6 +47,7 @@ class BookController extends Controller
             'price' => $request->price,
             'version'=>$request->version,
             'image'=>$newImageName,
+            'category_id'=>$request->categroy
         ]);
 
         return redirect()->route('books.index');

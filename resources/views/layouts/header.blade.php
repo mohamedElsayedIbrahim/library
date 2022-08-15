@@ -7,7 +7,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarID">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('Home') }}">Home</a>
                     
                 </div>
             </div>
