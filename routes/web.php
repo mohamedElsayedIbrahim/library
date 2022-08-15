@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
@@ -30,3 +30,11 @@ Route::get('/categories/edit/{id}',[CategoryController::class,'edit'])->name('ca
 Route::post('/categories/update/{id}',[CategoryController::class,'update'])->name('categories.update');
 
 Route::get('/categories/delete/{id}',[CategoryController::class,'destory'])->name('categories.destory');
+
+Route::get('/register',[AuthController::class,'register'])->name('Auth.register');
+Route::post('/handel/register',[AuthController::class,'handelRegister'])->name('Auth.handel.register');
+
+Route::get('/logout',[AuthController::class,'logout'])->name('Auth.logout');
+
+Route::get('/login',[AuthController::class,'login'])->name('Auth.login');
+Route::post('/handel/login',[AuthController::class,'handelLogin'])->name('Auth.handel.login');

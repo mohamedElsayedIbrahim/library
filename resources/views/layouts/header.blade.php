@@ -11,5 +11,27 @@
                     
                 </div>
             </div>
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @guest
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('Auth.login') }}">login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('Auth.register') }}">Register</a>
+                </li>
+                @endguest
+
+                @auth
+                <li class="nav-item">
+                    <a class="nav-link">Welcome, {{Auth::user()->name}}</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('Auth.logout') }}">logout</a>
+                </li> 
+                @endauth
+                
+
+            </ul>
         </div>
     </nav>
