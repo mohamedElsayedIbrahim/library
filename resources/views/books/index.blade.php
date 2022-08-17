@@ -14,6 +14,7 @@
 @endif
 @endauth
 
+@if(count($books) > 0)
     @foreach ($books as $item)
     <img class="img-fluid" src="{{ asset('uploads/books/'.$item->image) }}" width="300" height="300">
         <h3><a href="{{ route('books.show', $item->id) }}">{{$item->name}}</a></h3>
@@ -34,5 +35,10 @@
     @endforeach
 
     {{$books->links()}}
+@else
+
+<p>There are no data</p>
+
+@endif
 
 @endsection
