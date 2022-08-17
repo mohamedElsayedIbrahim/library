@@ -20,4 +20,6 @@
     <button type="submit" class="btn btn-primary">login</button>
   </form>
 
+  <a href="{{ route('login.github') }}" class="btn btn-dark">Login using Github</a>
+
 @endsection

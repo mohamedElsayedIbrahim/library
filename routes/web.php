@@ -29,6 +29,9 @@ Route::middleware('is.guest')->group(function(){
     Route::get('/login',[AuthController::class,'login'])->name('Auth.login');
     Route::post('/handel/login',[AuthController::class,'handelLogin'])->name('Auth.handel.login');
 
+    Route::get('login/github', [AuthController::class, 'redirectToProvider'])->name('login.github');
+    Route::get('login/github/callback', [AuthController::class,'handleProviderCallback']);
+
 });
 
 

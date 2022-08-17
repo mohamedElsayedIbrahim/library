@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -58,6 +59,37 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+
+        return redirect(route('Home'));
+        
+    }
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('github')->user();
+        
+        $user_email = $user->email;
+
+        $user_db = User::where('email','=',$user_email)->first();
+
+        if($user_db == null){
+            $user_new = User::create([
+                'name'=> $user->nickname,
+                'email' =>$user->email,
+                'password'=>Hash::make('123456'),
+                'oAuth'=>$user->token
+            ]);
+
+            Auth::login($user_new);
+
+        } else{
+            Auth::login($user_db);
+        }
 
         return redirect(route('Home'));
         
