@@ -6,10 +6,15 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarID">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="{{ route('Home') }}">Home</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{{ route('Home') }}">Home</a>
+                    </li>
                     
-                </div>
+                    <x-navbar></x-navbar>
+                    
+                  </ul>
+
             </div>
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -35,3 +40,4 @@
             </ul>
         </div>
     </nav>
+
