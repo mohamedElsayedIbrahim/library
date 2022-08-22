@@ -6,10 +6,6 @@
 
 @section('content')
 
-<?php
-$data = Auth::user()->name;
-?>
-<x-alert-success :name="$data"></x-alert-success>
 
 <div class="row">
 <div class="col-sm-4">
