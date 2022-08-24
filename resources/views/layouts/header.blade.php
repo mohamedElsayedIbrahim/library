@@ -8,7 +8,7 @@
             <div class="collapse navbar-collapse" id="navbarID">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="{{ route('Home') }}">Home</a>
+                      <a class="nav-link active" aria-current="page" href="{{ route('Home') }}">@lang('site.home')</a>
                     </li>
                     
                     <x-navbar></x-navbar>
@@ -20,22 +20,31 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 @guest
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('Auth.login') }}">login</a>
+                  <a class="nav-link" href="{{ route('Auth.login') }}">@lang('site.login')</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('Auth.register') }}">Register</a>
+                  <a class="nav-link" href="{{ route('Auth.register') }}">@lang('site.register')</a>
                 </li>
                 @endguest
 
                 @auth
                 <li class="nav-item">
-                    <a class="nav-link">Welcome, {{Auth::user()->name}}</a>
+                    <a class="nav-link">@lang('site.welcome'), {{Auth::user()->name}}</a>
                 </li> 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('Auth.logout') }}">logout</a>
+                    <a class="nav-link" href="{{ route('Auth.logout') }}">@lang('site.logout')</a>
                 </li> 
                 @endauth
                 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      @lang('site.lang')
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{route('Lang.en')}}">En</a></li>
+                        <li><a class="dropdown-item" href="{{ route('Lang.ar') }}">Ar</a></li>
+                    </ul>
+                </li>
 
             </ul>
         </div>

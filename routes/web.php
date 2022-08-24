@@ -4,12 +4,17 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LangController;
 
-Route::get('/', function () {
-    return view('index');
-})->name('Home');
 
-Route::get('/books',[BookController::class,'index'])->name('books.index');
+
+
+Route::middleware('lang')->group(function(){
+    Route::get('/', function () {
+        return view('index');
+    })->name('Home');
+
+    Route::get('/books',[BookController::class,'index'])->name('books.index');
 Route::get('/books/show/{id}',[BookController::class,'show'])->name('books.show');
 
 
@@ -59,3 +64,9 @@ Route::middleware('is.admin')->group(function(){
 Route::middleware('is.auth')->group(function(){
     Route::get('/logout',[AuthController::class,'logout'])->name('Auth.logout');
 });
+
+});
+
+
+Route::get('/lang/en',[LangController::class,'en'])->name('Lang.en');
+Route::get('/lang/ar',[LangController::class,'ar'])->name('Lang.ar');

@@ -1,6 +1,6 @@
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Categories
+      @lang('site.cats')
     </a>
     <ul class="dropdown-menu">
       @foreach ($cats as $item)
