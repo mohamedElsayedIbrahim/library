@@ -19,12 +19,12 @@ Route::get('/categories',[CategoryController::class,'index'])->name('categories.
 Route::get('/categories/show/{id}',[CategoryController::class,'show'])->name('categories.show');
 
 
-
+Route::post('/handel/register',[AuthController::class,'handelRegister'])->name('Auth.handel.register');
 
 Route::middleware('is.guest')->group(function(){
 
     Route::get('/register',[AuthController::class,'register'])->name('Auth.register');
-    Route::post('/handel/register',[AuthController::class,'handelRegister'])->name('Auth.handel.register');
+    
 
     Route::get('/login',[AuthController::class,'login'])->name('Auth.login');
     Route::post('/handel/login',[AuthController::class,'handelLogin'])->name('Auth.handel.login');

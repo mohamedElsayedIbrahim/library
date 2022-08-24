@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Mail\RegisterUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
@@ -29,8 +31,9 @@ class AuthController extends Controller
             'password'=>Hash::make($request->password),
         ]);
 
-        Auth::login($login);
+        //Mail::to($request->email)->queue(new RegisterUser());
 
+        Auth::login($login);
         return redirect(route('Home'));
     }
 
